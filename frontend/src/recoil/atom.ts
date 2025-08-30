@@ -7,8 +7,8 @@ export const logined = atom({
 })
 
 export const baseurl = atom({
-    key:"baseurl",
-    default:""
+    key: "baseurl",
+    default: import.meta.env.VITE_API_BASEURL || "http://localhost:3000"
 })
 
 export const navatom = atom({

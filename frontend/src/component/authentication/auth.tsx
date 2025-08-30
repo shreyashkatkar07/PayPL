@@ -11,7 +11,7 @@ export default function Auth(){
 
     useEffect(()=>{
         if(!login) navigate("/");
-    },[login]);
+    },[login, navigate]);
     
     return (login)? <Outlet/> : <div></div>;
 
