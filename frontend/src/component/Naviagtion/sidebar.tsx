@@ -9,7 +9,7 @@ function Navbar() {
         <div className="sticky z-50 right-0 bottom-0 bg-white sm:left-0 sm:top-0 flex flex-col sm:h-screen overflow-hidden w-full sm:w-16 sm:hover:w-60 transition-all duration-300 ease-in-out shadow-[4px_0_10px_rgba(0,0,0,0.3)]">
             <div className="sm:flex hidden ">
                 <img src={logo} alt="logo" className="h-16 w-16 bg-white rounded-sm shadow-lg" />
-                <div className="text-3xl font-bold text-cyan-900 flex items-center justify-center"><p>PayNow</p></div>
+                <div className="text-3xl font-bold text-cyan-900 flex items-center justify-center"><p>PayPL</p></div>
             </div>
             <Navcomp />
             <div className='h-full hidden sm:flex items-end'>

@@ -14,25 +14,28 @@ import Footr from "./footr/footr.tsx"
 
 
 export default function defaultpage(){
-    return<div className={"bg-bg1 bg-center bg-no-repeat sm:bg-stretch h-full  "}>
-      <Navtop/> 
-    <div className={"flex justify-around flex-col-reverse sm:flex-row bg-gradient-to-t from-white/5 "} >
-        <div className="sm:w-1/3 flex flex-col justify-center item-center m-4 sm:border-0 bg-cyan-900 border-2 sm:bg-transparent border-slate-300 rounded-2xl">
-            <div className="h-1/6 flex items-center justify-center item-center mt-8 pb-8">
-                <div className="text-white text-5xl font-bold text-center p-4  rounded-lg shadow-lg">
-                    Create Your Account With Zero Charges!
-                </div>
-            </div>            
-        <LoginBox/>
-
-        </div>
-        <div className="flex flex-col justify-center max-w-fit ">
-            <RightBox/>
-        </div>
-
-    </div>
-    <Footr/>
-    </div>
+    return (
+      <div className="bg-bg1 bg-center bg-no-repeat min-h-screen flex flex-col">
+        <Navtop />
+        {/* Hero Section */}
+        <section className="flex flex-col items-center justify-center py-8 px-4 bg-gradient-to-b from-blue-900/80 to-transparent">
+          <h1 className="text-white text-4xl sm:text-5xl font-bold text-center mb-2 drop-shadow-lg">Create Your Account With Zero Charges!</h1>
+          <p className="text-blue-100 text-lg text-center max-w-xl mb-4">Sign up to PayPL and experience seamless payments, loans, and wallet management—all in one place.</p>
+        </section>
+        {/* Main Content */}
+        <main className="flex flex-col-reverse md:flex-row items-center justify-center gap-6 px-4 py-4 flex-1">
+          {/* Login Card */}
+          <div className="w-full max-w-md mx-auto md:mx-0">
+            <LoginBox />
+          </div>
+          {/* Right Box */}
+          <div className="w-full max-w-lg mx-auto md:mx-0 flex justify-center">
+            <RightBox />
+          </div>
+        </main>
+        <Footr />
+      </div>
+    );
 }
 
 function LoginBox(){
@@ -68,34 +71,32 @@ function LoginBox(){
         })
     }
     
-    return <div className="w-full p-4 bg-white opacity-90 border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 ">
-    <form className="space-y-6" onSubmit={login}>
-        <h5 className="text-xl font-medium text-gray-900 dark:text-white">Sign in to our platform</h5>
-        <div>
-            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-            <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required />
-        </div>
-        <div>
-            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
-            <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
-        </div>
-        <div className="flex items-start">
-            <div className="flex items-start">
-                <div className="flex items-center h-5">
-                    <input id="remember" type="checkbox" value="" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
-                </div>
-                <label htmlFor="remember" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree to Terms and Conditions</label>
-            </div>
-        </div>
-        <Buton isloading = {isloading}/>
-        <div className="self-center">
-                        {message}
-                    </div>
-        <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
-            Not registered? <a href="#" className="text-blue-700 hover:underline dark:text-blue-500" onClick={()=>{navigate("/register")}}>Create account</a>
-        </div>
-    </form>
-</div>
+    return (
+      <div className="w-full bg-white/90 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl px-8 py-10 flex flex-col gap-6">
+        <form className="flex flex-col gap-6" onSubmit={login}>
+          <h5 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 text-center">Sign in to our platform</h5>
+          <div className="flex flex-col gap-2">
+            <label htmlFor="email" className="text-base font-medium text-gray-900 dark:text-white">Your email</label>
+            <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-4 py-3 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required />
+          </div>
+          <div className="flex flex-col gap-2">
+            <label htmlFor="password" className="text-base font-medium text-gray-900 dark:text-white">Your password</label>
+            <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-4 py-3 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
+          </div>
+          <div className="flex items-center gap-2">
+            <input id="remember" type="checkbox" value="" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
+            <label htmlFor="remember" className="text-base font-medium text-gray-900 dark:text-gray-300">I agree to Terms and Conditions</label>
+          </div>
+          <Buton isloading={isloading} />
+          {message && (
+            <div className="self-center text-red-600 text-sm font-medium">{message}</div>
+          )}
+          <div className="text-base font-medium text-gray-500 dark:text-gray-300 text-center">
+            Not registered? <a href="#" className="text-blue-700 hover:underline dark:text-blue-500" onClick={() => { navigate("/register") }}>Create an account</a>
+          </div>
+        </form>
+      </div>
+    );
 }
 
 function Buton({isloading}: {isloading: boolean}){

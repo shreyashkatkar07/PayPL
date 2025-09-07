@@ -1,4 +1,3 @@
-
 import { useRecoilValue } from "recoil";
 import Leftcomp from "./leftcomp";
 import Middlecomp from "./middlecomp";
@@ -11,17 +10,17 @@ export default function home() {
     const firstName = user.name.split(" ")[0];
     const date = new Date();
 
-    return <div className="bg-sky-700">
-        <div className="flex justify-between">
-            <h1 className="sm:text-4xl text-2xl font-semibold p-3 text-white"> Welcome back {firstName}</h1>
-            <h1 className="sm:text-4xl text-2xl text-center p-3 font-semibold text-white">{date.toDateString()}</h1>
+    return (
+        <div className="min-h-screen bg-gradient-to-br from-blue-700 via-sky-600 to-blue-900 flex flex-col">
+            <header className="flex flex-col items-center justify-center py-8">
+                <h1 className="text-4xl sm:text-5xl font-bold text-white mb-2 text-center drop-shadow-lg">Welcome back, {firstName}</h1>
+                <h2 className="text-xl sm:text-2xl font-medium text-blue-100 text-center">{date.toDateString()}</h2>
+            </header>
+            <main className="flex flex-col md:flex-row items-stretch justify-center gap-8 px-4 pb-12 flex-1">
+                <Leftcomp />
+                <Middlecomp />
+                <Rightcomp />
+            </main>
         </div>
-
-        <div className="h-full flex justify-around flex-col sm:flex-row">
-            <Leftcomp />
-            <Middlecomp />
-            <Rightcomp />
-        </div>
-    </div>
-
+    );
 }

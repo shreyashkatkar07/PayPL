@@ -2,7 +2,7 @@ import { useState } from 'react';
 import {logined, userinfo} from '../../recoil/atom';
 import { useRecoilValue } from 'recoil';
 
-import paylogo from '../../assets/Mainlogo.png';
+import paylogo from '../../assets/main-logo.png'
 
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -20,7 +20,7 @@ export default function Navtop(){
     return <><div className={'flex flex-row justify-center ' + ((location.pathname !== "/")? "sm:absolute sm:top-0 sm:left-0 sm:z-20 block" : " ")}>
       <div className='flex flex-row justify-between w-full'>
           <div className='flex flex-row sm:justify-center'>
-            <img src={paylogo} className='h-12 ml-14 bg-white rounded-sm shadow-lg' />
+            <img src={paylogo} className='h-16 ml-14 bg-white rounded-sm shadow-lg' />
           </div>
           <div className='flex justify-center items-center mr-10 ml-10'>
             {(!text)? <button onClick={()=>navigate("/register")} type="button" className=" text-white bg-[#3b5998] hover:bg-[#3b5998]/90 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55 ">Signup</button>:<User name = {username.name}/>}
