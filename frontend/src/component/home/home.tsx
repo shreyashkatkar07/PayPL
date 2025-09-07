@@ -11,7 +11,7 @@ export default function home() {
     const date = new Date();
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-700 via-sky-600 to-blue-900 flex flex-col">
+        <div className="min-h-screen bg-sky-700 flex flex-col">
             <header className="flex flex-col items-center justify-center py-8">
                 <h1 className="text-4xl sm:text-5xl font-bold text-white mb-2 text-center drop-shadow-lg">Welcome back, {firstName}</h1>
                 <h2 className="text-xl sm:text-2xl font-medium text-blue-100 text-center">{date.toDateString()}</h2>

@@ -123,13 +123,13 @@ export default function AddMoney(props: any) {
                 <h2 className="text-xl font-semibold mb-4">Payment Information</h2>
                 <div className="w-full h-full flex justify-center items-center flex-col gap-5 pb-9">
                     
-                    <input type="text" ref={inputRef} placeholder="Enter the amount" className="rounded-xl text-center" />
+                    <input type="text" ref={inputRef} placeholder="Enter the amount (₹)" className="rounded-xl text-center" />
                     <h1 className="font-bold text-2xl">Chose Payment Options</h1>
                     
                 </div>
                 <div className="flex justify-center flex-col sm:flex-row items-center mb-4 gap-7">
                     <img src={Razorpaylogo} onClick={()=>setChoice("Razorpay")} alt="Razorpay_logo" className="w-64 hover:cursor-pointer hover:scale-110 transition-all" />
-                    <img src={Cashfree} onClick={()=>setChoice("CashFree")} alt="Cashfree_logo" className="w-64 hover:cursor-pointer hover:scale-110 transition-all" />
+                    {/* <img src={Cashfree} onClick={()=>setChoice("CashFree")} alt="Cashfree_logo" className="w-64 hover:cursor-pointer hover:scale-110 transition-all" /> */}
                 </div>
                 <div className="flex justify-center items-center">
                     {
