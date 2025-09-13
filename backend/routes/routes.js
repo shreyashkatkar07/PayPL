@@ -21,9 +21,9 @@ router.use("/healthz", (req, res) => {
     res.status(200).json({status:"ok"});
 });
 
-router.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/index.html"));
-});
+// router.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, "../public/index.html"));
+// });
 
 
 module.exports = router;

@@ -2,20 +2,46 @@ import { useRecoilValue } from "recoil";
 import { userinfo } from "../../recoil/atom";
 import uid from "../../assets/uid.svg"
 import { useNavigate } from "react-router-dom";
+import React from "react";
+import axios from "axios";
+import { useSetRecoilState } from "recoil";
+import { baseurl, userinfo as userinfoAtom } from "../../recoil/atom";
 
 export default function Leftcomp() {
 
     const user: any = useRecoilValue(userinfo);
-
+    const setUser = useSetRecoilState(userinfoAtom);
+    const url = useRecoilValue(baseurl);
     const nav = useNavigate();
+    const [loading, setLoading] = React.useState(false);
 
+    // Refresh balance logic similar to rightcomp
+    const refreshBalance = () => {
+        setLoading(true);
+        axios.post(url + "/user/details", { _id: user._id }, { headers: { Authorization: sessionStorage.getItem("token") } })
+            .then((res) => {
+                setUser(res.data);
+            })
+            .catch((err) => {
+                // Optionally show error
+            })
+            .finally(() => setLoading(false));
+    };
 
     return (
         <div className="sm:w-1/3 h-auto sm:mb-8">
             <div className="h-full p-6 m-4 bg-white rounded-2xl shadow-2xl flex flex-col gap-6">
                 <div className="bg-cyan-100 rounded-xl py-6 flex flex-col items-center gap-2">
-                    <div className="text-5xl font-extrabold text-cyan-700">₹ {user.balance}</div>
-                    <div className="text-xl font-bold text-cyan-900">Account Balance</div>
+                    <div className="flex flex-col items-center gap-3">
+                        <div className="text-5xl font-extrabold text-cyan-700">₹ {user.balance}</div>
+                        <div className="text-xl font-bold text-cyan-900">Account Balance</div>
+                        {/* <button type="button" onClick={refreshBalance} disabled={loading} className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-semibold rounded-lg text-base px-4 py-2 flex items-center gap-2 disabled:opacity-60">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+                            </svg>
+                            {loading ? "Refreshing..." : "Refresh"}
+                        </button> */}
+                    </div>
                     <button type="button" onClick={() => { nav("/wallet") }} className="mt-4 text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-semibold rounded-lg text-base px-6 py-2.5">Add Money</button>
                 </div>
                 <div className="pt-2">
@@ -36,7 +62,7 @@ export default function Leftcomp() {
                         <img src={uid} alt="UID" className="w-7 h-7" />
                         <div className="bg-blue-100 text-blue-800 text-base font-medium px-3 py-1 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">{user.uid}</div>
                     </div>
-                    <button type="button" className="mt-6 w-full text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-semibold rounded-lg text-base px-6 py-2.5">Update Details</button>
+                    {/* <button type="button" className="mt-6 w-full text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-semibold rounded-lg text-base px-6 py-2.5">Update Details</button> */}
                     <div className="mt-6">
                         <div className="grid gap-3 mt-2">
                             <div className="flex items-center gap-3 bg-green-50 border-l-4 border-green-400 rounded-lg px-4 py-2">

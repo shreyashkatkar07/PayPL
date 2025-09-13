@@ -22,12 +22,23 @@ export default function Transaction(){
     
    useEffect(f,[]);
 
-    return <div className="bg-sky-700 min-h-screen w-full overflow-auto">
-        <h1 className="font-semibold text-4xl p-5 pl-10 text-white">Transaction History</h1>
-        <div className="flex justify-center w-full">
-            {(transc.length === 0) ? <div className="text-center text-2xl">No Transactions Yet</div> : <TransactionHistory transc = {transc}/>}
+    return (
+        <div className="min-h-screen w-full bg-sky-700 flex flex-col items-center py-8 px-2 overflow-auto">
+            <div className="w-full max-w-5xl mx-auto">
+                <h1 className="font-bold text-4xl sm:text-5xl text-white mb-8 drop-shadow-lg text-center">Transaction History</h1>
+                <div className="flex justify-center w-full">
+                    {transc.length === 0 ? (
+                        <div className="bg-white/80 rounded-xl shadow-lg p-10 text-center text-2xl text-gray-700 font-semibold animate-fade-in">
+                            <svg className="mx-auto mb-4" width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="#3b82f6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            No Transactions Yet
+                        </div>
+                    ) : (
+                        <TransactionHistory transc={transc} />
+                    )}
+                </div>
+            </div>
         </div>
-    </div>
+    );
 }
 
 function TransactionHistory(props:any){
@@ -35,36 +46,56 @@ function TransactionHistory(props:any){
     const user:any = useRecoilValue(userinfo);
 
     function convertUTCDateToIST(date: Date) {
-        return moment(date).tz(moment.tz.guess()).format('YYYY-MM-DD hh:mm:ss A (z)');
+        return moment(date).tz(moment.tz.guess()).format('YYYY-MM-DD hh:mm:ss A');
     }
 
-    return <div className="bg-white w-full m-2 sm:m-10 rounded-md shadow-md sm:p-5">
-        <div className="hidden sm:grid grid-cols-4 gap-4 text-2xl font-semibold border-b-2 border-gray-300">
-            <div className="w-fit">Transaction ID</div>
-            <div>Sender & Receiver</div>
-            <div>Amount</div>
-            <div>Date & Time</div>
+    return (
+        <div className="bg-blue-100/60 w-full max-w-5xl mx-auto rounded-2xl shadow-2xl p-2 sm:p-8 animate-fade-in">
+            <table className="w-full text-left border-separate" style={{ borderSpacing: "0 1.5rem" }}>
+                <thead>
+                    <tr className="text-2xl font-bold text-blue-900">
+                        <th className="px-8 py-4 border-r border-gray-300">Transaction ID</th>
+                        <th className="px-8 py-4 border-r border-gray-300">Sender & Receiver</th>
+                        <th className="px-8 py-4 border-r border-gray-300">Amount</th>
+                        <th className="px-8 py-4">Date & Time (IST)</th>
+                    </tr>
+                    <tr>
+                        <td colSpan={4} className="border-b border-gray-300"></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {props.transc.map((item:any, idx:number) => (
+                        <tr key={item.id + idx} className="rounded-2xl bg-white/80 shadow-sm transition-all duration-200 hover:bg-blue-50">
+                            <td className="px-8 py-6 border-r border-gray-300">
+                                <span className="bg-blue-200 text-blue-800 text-xl font-semibold px-7 py-3 rounded-full shadow inline-block">{item.id}</span>
+                            </td>
+                            <td className="px-8 py-6 border-r border-gray-300">
+                                <span className="font-medium text-lg text-gray-900">
+                                    {(item.sender === user._id) ? "You" : item.senderName}
+                                </span>
+                                <span className="inline-block mx-2 align-middle">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#2563eb" className="inline w-7 h-7">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                                    </svg>
+                                </span>
+                                <span className="font-medium text-lg text-gray-900">
+                                    {(item.receiver === user._id) ? "You" : item.receiverName}
+                                </span>
+                            </td>
+                            <td className="px-8 py-6 border-r border-gray-300">
+                                <span className={((item.sender === user._id) ? "text-red-600" : "text-green-600") + " text-xl font-bold"}>
+                                    {(item.sender === user._id) ? "-" : "+"} ₹ {item.amount}
+                                </span>
+                            </td>
+                            <td className="px-8 py-6">
+                                <span className="text-xl font-medium text-gray-800">
+                                    {convertUTCDateToIST(item.date)}
+                                </span>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
-            {props.transc.map((item:any)=>{
-                return <div className="sm:grid grid-cols-4 gap-4 rounded-sm hover:bg-slate-100 p-5 border-b-2 border-gray-300 w-full">
-                    <div className="w-fit bg-blue-100 text-blue-800 text-2xl font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">
-                        <span className="relative sm:hidden">TxID:</span>{item.id}
-                    </div>
-                    <div className="flex text-xl">
-                        {(item.sender === user._id)?"You" : item.senderName}
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-7 ml-2 mr-2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                        </svg>
-                        {(item.receiver === user._id)?"You" : item.receiverName}
-                    </div>
-                    <div className={((item.sender === user._id)?"text-red-700":"text-green-700") + " text-xl"}>
-                        {(item.sender === user._id)?"-":"+"} ₹ {item.amount}
-                    </div>
-                    <div className="text-xl font-medium">
-                        <div className="block sm:hidden">Date & Time-</div>
-                        {convertUTCDateToIST(item.date)}
-                    </div>
-                </div>
-            })}
-    </div>
+    );
 }
