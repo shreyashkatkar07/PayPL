@@ -16,8 +16,14 @@ export default function Send(props:React.PropsWithChildren<any>){
 
     function verify(form:React.FormEvent<HTMLFormElement>){
         form.preventDefault();
+        // Input validation: require one of uid/email/number selected
+        const type = form.currentTarget.type.value;
+        if (!type) {
+            setMessage("Please select UID, E-Mail, or Number.");
+            return;
+        }
         const data = {
-            type: form.currentTarget.type.value,
+            type,
             amount: form.currentTarget.amount.value,
             receiver: form.currentTarget.receiver.value,
             _id : user._id
@@ -41,8 +47,14 @@ export default function Send(props:React.PropsWithChildren<any>){
 
     function sendRequest(form:React.FormEvent<HTMLFormElement>){
         form.preventDefault();
+        // Input validation: require one of uid/email/number selected
+        const type = form.currentTarget.type.value;
+        if (!type) {
+            setMessage("Please select UID, E-Mail, or Number.");
+            return;
+        }
         const data = {
-            type: form.currentTarget.type.value,
+            type,
             amount: form.currentTarget.amount.value,
             receiver: form.currentTarget.receiver.value,
             _id : user._id
@@ -61,6 +73,7 @@ export default function Send(props:React.PropsWithChildren<any>){
             axios.post(url + "/payment/sendRequest",data2,{headers:{Authorization:h}})
             .then(()=>{
                 setMessage("Request Sent");
+                navigate("/home");
             }).catch((err)=>{
                 setMessage(err.response.data.error);
             })
@@ -76,7 +89,7 @@ export default function Send(props:React.PropsWithChildren<any>){
                 <form onSubmit={(props.text === "Send")? verify : sendRequest}>
                 <ul className="flex justify-around flex-col sm:flex-row ">
                     <li className="m-3 sm:m-0">
-                        <input type="radio" id="uid" name="type" value="uid" className="hidden peer " required />
+                        <input type="radio" id="uid" name="type" value="uid" className="hidden peer " />
                         <label htmlFor="uid" className="flex  justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">                           
                             <div className="w-full sm:w-60 flex justify-center">
                                 <img src={uid} alt="" width={30} />
@@ -96,7 +109,7 @@ export default function Send(props:React.PropsWithChildren<any>){
                         </label>
                     </li>
                     <li className="m-3 sm:m-0">
-                        <input type="radio" id="number" name="type" value="number" className="hidden peer" required />
+                        <input type="radio" id="number" name="type" value="number" className="hidden peer" />
                         <label htmlFor="number" className="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">                           
                             <div className="w-full sm:w-60 flex justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-9">
@@ -114,8 +127,8 @@ export default function Send(props:React.PropsWithChildren<any>){
 
                     </div>
                     <div className="sm:w-2/3">
-                    <div className=" sm:m-16 m-5">
-                    <label htmlFor="input-group-1" className="block mb-8 text-2xl font-medium text-gray-900 dark:text-white">Enter UID / E-Mail / Number</label>
+                    <div className="sm:m-8 m-4">
+                    <label htmlFor="input-group-1" className="block mb-4 text-2xl font-medium text-gray-900 dark:text-white">Enter UID / E-Mail / Number</label>
 
                     <div className="relative">
 
@@ -127,8 +140,8 @@ export default function Send(props:React.PropsWithChildren<any>){
                         <input type="text" id="input-group-1" name="receiver" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                         </div>
                     </div>
-                    <div className=" sm:m-16 m-5">
-                    <label htmlFor="input-group-1" className="block mb-8 text-2xl font-medium text-gray-900 dark:text-white">Enter Amount</label>
+                    <div className="sm:m-8 m-4">
+                    <label htmlFor="input-group-1" className="block mb-4 text-2xl font-medium text-gray-900 dark:text-white">Enter Amount</label>
 
                     <div className="relative">
 
@@ -141,9 +154,9 @@ export default function Send(props:React.PropsWithChildren<any>){
                         <input type="number" id="input-group-1" name="amount" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                         </div>
                     </div>
-                    <div className="flex flex-col items-center justify-center">
+                    <div className="flex flex-col items-center justify-center gap-4">
                         <div>{message}</div>
-                        <button type="submit" className=" text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-2xl px-5 py-2.5 text-center me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">{props.text}</button>
+                        <button type="submit" className="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-2xl px-5 py-2.5 text-center me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">{props.text}</button>
                     </div></div>
                 </div>
                 </form>

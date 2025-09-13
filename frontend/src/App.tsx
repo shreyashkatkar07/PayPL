@@ -45,7 +45,8 @@ function AnimatedRoutes() {
               <Route path="/home" element={<Animate><Home /></Animate>} />
               <Route path="/Wallet" element={<Animate><Wallet /></Animate>} />
               <Route path="/transaction" element={<Animate><Transaction /></Animate>} />
-              <Route path="/transfer" element={<Animate><Transfer /></Animate>} />
+              <Route path="/transfer/send" element={<Animate><Transfer /></Animate>} />
+              <Route path="/transfer/request" element={<Animate><Transfer /></Animate>} />
               <Route path="/search" element={<Animate><SearchPeople /></Animate>} />
               <Route path="/loan/*" element={<Animate><Loan /></Animate>} />
               <Route path="/bills" element={<Animate><Bills /></Animate>} />

@@ -8,14 +8,14 @@ export default function Middlecomp() {
 
     return <div className=' sm:w-1/3 m-4 p-4 bg-white rounded-xl shadow-lg transition-all	'>
 
-        <div onClick={() => { nav("/transfer") }} className='transition-all	 m-4 flex flex-col items-center justify-center bg-cyan-200 rounded-lg shadow-md group ransition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 cursor-pointer	'>
+    <div onClick={() => { nav("/transfer/send") }} className='transition-all	 m-4 flex flex-col items-center justify-center bg-cyan-200 rounded-lg shadow-md group ransition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 cursor-pointer	'>
             <img src={send} alt="" width={100} />
             <div className='font-mono text-2xl  group-hover:block '>
                 <span className="bg-purple-100 text-purple-800 text-2lg font-medium me-2 px-2.5 py-0.5 rounded dark:bg-purple-900 dark:text-purple-300">Send Money</span>
 
             </div>
         </div>
-        <div onClick={() => { nav("/transfer") }} className='m-4 flex flex-col items-center justify-center bg-cyan-200 rounded-lg shadow-md group ransition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 cursor-pointer	'>
+    <div onClick={() => { nav("/transfer/request") }} className='m-4 flex flex-col items-center justify-center bg-cyan-200 rounded-lg shadow-md group ransition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 cursor-pointer	'>
             <img src={recive} alt="" width={100} />
             <div className='font-mono text-2xl  group-hover:block '>
                 <span className="bg-purple-100 text-purple-800 text-2lg font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-purple-300">Request Money</span>

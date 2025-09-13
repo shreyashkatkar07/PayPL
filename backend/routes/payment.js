@@ -225,7 +225,7 @@ router.post("/sendmoney",JWTMiddleware,async (req,res)=>{
         const resp = await user.findOne({_id:sender},{balance:1,pin:1});
 
         if( resp.pin != pin){
-            res.status(400).json({error:"wrong pin"});
+            res.status(400).json({error:"Wrong Pin"});
             res.end();
             return;
         }

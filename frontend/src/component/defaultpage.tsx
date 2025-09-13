@@ -4,7 +4,6 @@ import { baseurl, logined, userinfo } from "../recoil/atom.ts";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Navtop from './Naviagtion/navtop.tsx';
-
 import ph1 from "../assets/ph1.png"
 import ph2 from "../assets/ph2.png"
 import ph3 from "../assets/ph3.png"
@@ -17,12 +16,12 @@ export default function Defaultpage() {
     <div className="bg-bg1 bg-center bg-no-repeat min-h-screen flex flex-col">
       <Navtop />
       {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center py-8 px-4 bg-gradient-to-b from-blue-900/80 to-transparent">
-        <h1 className="text-white text-4xl sm:text-5xl font-bold text-center mb-2 drop-shadow-lg">Create Your Account With Zero Charges!</h1>
-        <p className="text-blue-100 text-lg text-center max-w-xl mb-4">Sign up to PayPL and experience seamless payments, loans, and wallet management—all in one place.</p>
+      <section className="flex flex-col items-center justify-center px-4 bg-gradient-to-b from-blue-900/80 to-transparent">
+        <h1 className="text-white text-3xl sm:text-4xl font-bold text-center drop-shadow-lg my-1">Create Your Account With Zero Charges!</h1>
+        <p className="text-blue-100 text-lg text-center max-w-xl my-1">Sign up to PayPL and experience seamless payments, loans, and wallet management—all in one place.</p>
       </section>
       {/* Main Content */}
-      <main className="flex flex-col-reverse md:flex-row items-center justify-center gap-20 px-4 py-4 flex-1">
+      <main className="flex flex-col-reverse md:flex-row items-center justify-center gap-20 px-4 flex-1">
         {/* Login Card */}
         <div className="w-full max-w-md mx-auto md:mx-0">
           <LoginBox />
@@ -73,7 +72,7 @@ function LoginBox() {
   return (
     <div className="w-full bg-white/90 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl px-8 py-10 flex flex-col gap-6">
       <form className="flex flex-col gap-6" onSubmit={login}>
-        <h5 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 text-center">Sign in to our platform</h5>
+        <h5 className="text-2xl font-bold text-gray-900 dark:text-white mb-1 text-center">Sign in to our platform</h5>
         <div className="flex flex-col gap-2">
           <label htmlFor="email" className="text-base font-medium text-gray-900 dark:text-white">Your email</label>
           <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-4 py-3 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required />
