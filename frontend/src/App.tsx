@@ -7,7 +7,7 @@ import Navbar from './component/Naviagtion/sidebar';
 
 
 // Lazy loading the components
-const Defaultpage = React.lazy(() => import('./component/Defaultpage'));
+const Defaultpage = React.lazy(() => import('./component/defaultpage'));
 const Register = React.lazy(() => import('./component/Registration/register'));
 const Home = React.lazy(() => import('./component/home/home'));
 const Wallet = React.lazy(() => import('./component/wallet/wallet'));

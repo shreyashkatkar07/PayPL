@@ -2,7 +2,6 @@ import { useRecoilValue } from "recoil";
 import { baseurl, userinfo } from "../../recoil/atom";
 import axios from "axios";
 import Razorpaylogo from "../../assets/Razorpay_logo.svg";
-import Cashfree from "../../assets/cashfree.png";
 import { useRef, useState } from "react";
 
 export default function AddMoney(props: any) {
