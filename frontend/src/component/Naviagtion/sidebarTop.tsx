@@ -1,4 +1,4 @@
-import Navcomp from './navcomponent';
+import Navcomp from './siderbarBottom';
 import logo from '../../assets/logo/Paylogo.png';
 import { useRecoilValue } from 'recoil';
 import {userinfo} from '../../recoil/atom'

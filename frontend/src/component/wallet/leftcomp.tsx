@@ -19,6 +19,16 @@ export default function LeftComp(props: React.PropsWithRef<any>) {
                                 <span className="text-cyan-600 text-6xl font-extrabold">{user.balance}</span>
                             </div>
                             <div className="bg-blue-100 text-blue-800 text-2xl font-bold px-8 py-2 rounded-full mb-4">Account Balance</div>
+                            <button
+                                type="button"
+                                onClick={updateuser}
+                                className="mt-2 text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-semibold rounded-lg text-base px-4 py-2 flex items-center gap-2 disabled:opacity-60"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+                                </svg>
+                                Refresh
+                            </button>
                         </div>
                     </div>
                     <div>
@@ -42,9 +52,9 @@ export default function LeftComp(props: React.PropsWithRef<any>) {
                             </div>
                         </div>
                     </div>
-                    <div className="flex justify-center pt-3">
+                    {/* <div className="flex justify-center pt-3">
                         <button type="button" className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg font-bold rounded-xl text-xl px-8 py-3 text-center w-full max-w-xs">Reset Wallet Pin</button>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

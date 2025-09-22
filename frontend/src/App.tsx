@@ -3,7 +3,7 @@ import { RecoilRoot } from 'recoil';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import {NextUIProvider} from "@nextui-org/react";
-import Navbar from './component/Naviagtion/sidebar';
+import Navbar from './component/Naviagtion/sidebarTop';
 
 
 // Lazy loading the components
